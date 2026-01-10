@@ -37,12 +37,12 @@
   </a>
   <ul class="dropdown-menu dropdown-menu-dark shadow">
     <li>
-        <a class="dropdown-item py-2 text-success" href="ajouter.php">
+        <a class="dropdown-item py-2 text-success" href="create_professeur.php">
             <i class="fa-solid fa-user-plus me-2"></i>Nouveau
         </a>
     </li>
     <li>
-        <a class="dropdown-item py-2 text-info" href="index.php">
+        <a class="dropdown-item py-2 text-info" href="index_professeur.php">
             <i class="fa-solid fa-list me-2"></i>Liste
         </a>
     </li>
@@ -61,4 +61,5 @@
       </ul>
     </div>
   </div>
+
 </nav>
