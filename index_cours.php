@@ -1,11 +1,6 @@
 <?php
-require_once "config.php";
-$pdo = getConnexion();
-
-$sql = "SELECT cours.*, professeur.nom AS prof_nom, professeur.prenom AS prof_prenom
-        FROM cours
-        LEFT JOIN professeur ON cours.professeur_id = professeur.id";
-$cours = $pdo->query($sql)->fetchAll();
+require_once "fonctions_cours.php";
+$cours = getAllCours(); // On appelle juste la fonction !
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -47,6 +42,8 @@ $cours = $pdo->query($sql)->fetchAll();
                 </tbody>
             </table>
         </div>
-    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
