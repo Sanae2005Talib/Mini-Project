@@ -33,4 +33,25 @@ function getCoursById($id) {
     $stmt->execute([$id]);
     return $stmt->fetch();
 }
+function modifier_cours($code, $intitule, $description, $duree, $prix, $prof_id, $id)
+{
+    try {
+        $cnx = getConnexion();
+        $r = $cnx->prepare(
+            "UPDATE cours 
+             SET code = ?, 
+                 intitule = ?, 
+                 description = ?, 
+                 dureeHeures = ?, 
+                 prix = ?, 
+                 professeur_id = ?
+             WHERE id = ?"
+        );
+        // On passe les variables dans le même ordre que les "?"
+        return $r->execute([$code, $intitule, $description, $duree, $prix, $prof_id ?: null, $id]);
+    } catch (Throwable $th) {
+        echo "Erreur modification cours : " . $th->getMessage();
+        return false;
+    }
+}
 ?>
