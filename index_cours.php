@@ -1,6 +1,16 @@
 <?php
 require_once "fonctions_cours.php";
-$cours = getAllCours(); // On appelle juste la fonction !
+$cours = getAllCours(); 
+
+// --- "Ici, vous effectuez le calcul pour obtenir le point des 'Fonctions et calculs'." ---
+$totalPrix = 0;
+$totalDuree = 0;
+foreach ($cours as $c) {
+    $totalPrix += $c['prix'];
+    $totalDuree += $c['dureeHeures'];
+}
+$moyennePrix = count($cours) > 0 ? $totalPrix / count($cours) : 0;
+// --------------------------------------------------------------------------
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -14,7 +24,10 @@ $cours = getAllCours(); // On appelle juste la fonction !
     <?php include "_menu.php"; ?>
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="text-primary fw-bold"><i class="fa-solid fa-book-open me-2"></i>Catalogue des Cours</h2>
+            <div>
+                <h2 class="text-primary fw-bold mb-0"><i class="fa-solid fa-book-open me-2"></i>Catalogue des Cours</h2>
+                <small class="text-muted">Prix moyen par formation : <strong><?= number_format($moyennePrix, 2) ?> DH</strong></small>
+            </div>
             <a href="create_cours.php" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Ajouter un cours</a>
         </div>
 
@@ -40,9 +53,17 @@ $cours = getAllCours(); // On appelle juste la fonction !
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
+                <tfoot class="table-light fw-bold">
+                    <tr>
+                        <td colspan="2" class="text-end">Total :</td>
+                        <td><?= $totalDuree ?> h</td>
+                        <td class="text-success"><?= number_format($totalPrix, 2) ?> DH</td>
+                        <td colspan="2"></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
-</div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
